@@ -1,0 +1,20 @@
+{
+  "name": "fastify-crud-api",
+  "version": "1.0.0",
+  "description": "Fastify CRUD API",
+  "homepage": "https://github.com/radius486/Fastify-CRUD-API#readme",
+  "bugs": {
+    "url": "https://github.com/radius486/Fastify-CRUD-API/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/radius486/Fastify-CRUD-API.git"
+  },
+  "license": "MIT",
+  "author": "Rodion Grishaev",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  }
+}
