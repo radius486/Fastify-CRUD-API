@@ -1,22 +1,12 @@
 {
   "name": "fastify-crud-api",
   "version": "1.0.0",
-  "description": "Fastify CRUD API",
-  "homepage": "https://github.com/radius486/Fastify-CRUD-API#readme",
-  "bugs": {
-    "url": "https://github.com/radius486/Fastify-CRUD-API/issues"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/radius486/Fastify-CRUD-API.git"
-  },
-  "license": "MIT",
-  "author": "Rodion Grishaev",
   "type": "module",
-  "main": "src/server.js",
+  "main": "dist/server.js",
   "scripts": {
-    "start:prod": "node src/server.js",
-    "start:dev": "nodemon src/server.js",
+    "build": "tsc",
+    "start:prod": "node dist/server.js",
+    "start:dev": "tsx watch src/server.ts",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
@@ -26,6 +16,8 @@
     "fastify": "^5.8.2"
   },
   "devDependencies": {
-    "nodemon": "^3.1.14"
+    "@types/node": "^20.0.0",
+    "tsx": "^4.21.0",
+    "typescript": "^5.0.0"
   }
 }

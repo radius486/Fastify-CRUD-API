@@ -1,3 +1,5 @@
+import { FastifyInstance, FastifyPluginOptions } from 'fastify';
+
 import {
   getAllProductsSchema,
   getProductSchema,
@@ -8,14 +10,16 @@ import {
 
 import { products } from '../db/products.js';
 
-export default async function (fastify) {
+import { Product, IdParam, ProductBody } from '../types/common.js';
+
+export default async function (fastify: FastifyInstance) {
   fastify.get('/api/products', {
     schema: getAllProductsSchema,
   }, async () => {
     return products;
   });
 
-  fastify.get('/api/products/:id', {
+  fastify.get<{ Params: IdParam }>('/api/products/:id', {
     schema: getProductSchema,
   }, async (request, reply) => {
     const { id } = request.params;
@@ -28,7 +32,7 @@ export default async function (fastify) {
     return product;
   });
 
-  fastify.post('/api/products', {
+  fastify.post<{ Body: ProductBody }>('/api/products', {
     schema: createProductSchema,
   },async (request, reply) => {
     const { name, description, price, category, inStock } = request.body;
@@ -47,7 +51,7 @@ export default async function (fastify) {
     return reply.status(201).send(newProduct);
   });
 
-  fastify.put('/api/products/:id', {
+  fastify.put<{ Params: IdParam, Body: ProductBody }>('/api/products/:id', {
     schema: updateProductSchema,
   }, async (request, reply) => {
     const { id } = request.params;
@@ -63,7 +67,7 @@ export default async function (fastify) {
     return products[index];
   });
 
-  fastify.delete('/api/products/:id', {
+  fastify.delete<{ Params: IdParam }>('/api/products/:id', {
     schema: deleteProductSchema,
   }, async (request, reply) => {
     const { id } = request.params;

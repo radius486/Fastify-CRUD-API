@@ -16,7 +16,7 @@ const productIdParam = {
 };
 
 export const getAllProductsSchema = {
-  description: 'Получить список всех товаров',
+  description: 'Get product list',
   tags: ['Products'],
   response: {
     200: {
@@ -44,7 +44,7 @@ export const createProductSchema = {
   tags: ['Products'],
   body: {
     type: 'object',
-    required: ['name', 'description', 'price', 'category', 'inStock'],
+    required: ['name', 'price', 'category', 'inStock'],
     properties: {
       name: { type: 'string', minLength: 2 },
       price: { type: 'number', minimum: 0 },
@@ -64,7 +64,7 @@ export const updateProductSchema = {
   params: productIdParam,
   body: {
     type: 'object',
-    required: ['name', 'description', 'price', 'category', 'inStock'],
+    required: ['name', 'price', 'category', 'inStock'],
     properties: {
       name: { type: 'string', minLength: 2 },
       price: { type: 'number', minimum: 0 },
