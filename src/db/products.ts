@@ -1,6 +1,6 @@
 import { Product } from "../types/common.js";
 
-export let products: Product[] = [
+export const products: Product[] = [
   {
     id: '68655548-f5f0-4be4-a59a-75723c5633ef',
     name: 'Product 1',

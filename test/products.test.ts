@@ -2,6 +2,7 @@ import { describe, it, expect, beforeAll } from 'vitest';
 import { buildApp } from '../src/app.js'
 import { ProductSchema } from './schemas.js';
 import { products } from '../src/db/products.js';
+import { getProducts, saveProducts } from '../src/models/product.js';
 
 describe('Product API E2E Scenario', () => {
   let app: any;
@@ -9,8 +10,11 @@ describe('Product API E2E Scenario', () => {
 
   beforeAll(async () => {
     app = await buildApp();
+    const products = getProducts();
 
     products.length = 0;
+
+    saveProducts(products);
   });
 
   it('1. GET /api/products — array should be empty', async () => {

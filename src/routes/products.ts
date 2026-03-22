@@ -9,7 +9,7 @@ import {
   deleteProductSchema
 } from '../schemas/product.js';
 
-import { products } from '../db/products.js';
+import { getProducts, saveProducts } from '../models/product.js';
 
 import {
   IdParam,
@@ -20,13 +20,14 @@ export default async function (fastify: FastifyInstance) {
   fastify.get('/api/products', {
     schema: getAllProductsSchema,
   }, async () => {
-    return products;
+    return getProducts();
   });
 
   fastify.get<{ Params: IdParam }>('/api/products/:id', {
     schema: getProductSchema,
   }, async (request, reply) => {
     const { id } = request.params;
+    const products = getProducts();
     const product = products.find(p => p.id === id);
 
     if (!product) {
@@ -50,7 +51,9 @@ export default async function (fastify: FastifyInstance) {
       inStock,
     };
 
+    const products = getProducts();
     products.push(newProduct);
+    saveProducts(products);
 
     return reply.status(201).send(newProduct);
   });
@@ -60,6 +63,8 @@ export default async function (fastify: FastifyInstance) {
   }, async (request, reply) => {
     const { id } = request.params;
     const { name, description, price, category, inStock } = request.body;
+
+    const products = getProducts();
     const index = products.findIndex(p => p.id === id);
 
     if (index === -1) {
@@ -67,6 +72,7 @@ export default async function (fastify: FastifyInstance) {
     }
 
     products[index] = { id: id, name, description, price, category, inStock };
+    saveProducts(products);
 
     return products[index];
   });
@@ -75,6 +81,8 @@ export default async function (fastify: FastifyInstance) {
     schema: deleteProductSchema,
   }, async (request, reply) => {
     const { id } = request.params;
+
+    const products = getProducts();
     const index = products.findIndex(p => p.id === id);
 
     if (index === -1) {
@@ -82,6 +90,8 @@ export default async function (fastify: FastifyInstance) {
     }
 
     products.splice(index, 1);
+
+    saveProducts(products);
 
     return reply.status(204).send();
   });

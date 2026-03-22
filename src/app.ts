@@ -9,7 +9,7 @@ const schema = {
   properties: {
     PORT: {
       type: 'integer',
-      default: 3000
+      default: 4000
     }
   }
 } as const;

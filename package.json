@@ -7,6 +7,7 @@
     "build": "tsc",
     "start:prod": "node dist/server.js",
     "start:dev": "tsx watch src/server.ts",
+    "start:multi": "tsx src/cluster.ts",
     "test": "vitest"
   },
   "dependencies": {
