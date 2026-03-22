@@ -3,6 +3,7 @@ import swaggerPlugin from './plugins/swagger.js';
 import productRoutes from './routes/products.js';
 import fastifyEnv from '@fastify/env';
 import { AppConfig } from './types/common.js';
+import { buildApp } from './app.js';
 
 declare module 'fastify' {
   interface FastifyInstance {
@@ -31,9 +32,10 @@ const options = {
 
 const start = async () => {
   try {
-    await fastify.register(fastifyEnv, options);
-    await fastify.register(swaggerPlugin);
-    await fastify.register(productRoutes);
+    // await fastify.register(fastifyEnv, options);
+    // await fastify.register(swaggerPlugin);
+    // await fastify.register(productRoutes);
+    const fastify = await buildApp();
 
     const port = fastify.config.PORT;
 
