@@ -1,4 +1,4 @@
-# Fastify Product Catalog API
+# Fastify-CRUD-API
 
 A high-performance CRUD API for a product catalog built with **Fastify**, **TypeScript**, and **Zod**. This application features automated documentation, E2E testing, and a built-in Load Balancer using the Node.js Cluster API.
 
