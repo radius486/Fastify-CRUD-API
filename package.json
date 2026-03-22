@@ -1,0 +1,26 @@
+{
+  "name": "fastify-crud-api",
+  "version": "1.0.0",
+  "type": "module",
+  "main": "dist/server.js",
+  "scripts": {
+    "build": "tsc",
+    "start:prod": "node dist/server.js",
+    "start:dev": "tsx watch src/server.ts",
+    "start:multi": "tsx src/cluster.ts",
+    "test": "vitest"
+  },
+  "dependencies": {
+    "@fastify/env": "^5.0.3",
+    "@fastify/swagger": "^9.7.0",
+    "@fastify/swagger-ui": "^5.2.5",
+    "fastify": "^5.8.2"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "tsx": "^4.21.0",
+    "typescript": "^5.0.0",
+    "vitest": "^4.1.0",
+    "zod": "^4.3.6"
+  }
+}
