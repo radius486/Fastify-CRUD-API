@@ -1,4 +1,5 @@
-import { FastifyInstance, FastifyPluginOptions } from 'fastify';
+import { FastifyInstance } from 'fastify';
+import { randomUUID } from 'node:crypto';
 
 import {
   getAllProductsSchema,
@@ -10,7 +11,10 @@ import {
 
 import { products } from '../db/products.js';
 
-import { Product, IdParam, ProductBody } from '../types/common.js';
+import {
+  IdParam,
+  ProductBody
+} from '../types/common.js';
 
 export default async function (fastify: FastifyInstance) {
   fastify.get('/api/products', {
@@ -38,7 +42,7 @@ export default async function (fastify: FastifyInstance) {
     const { name, description, price, category, inStock } = request.body;
 
     const newProduct = {
-      id: `id_${products.length + 1}`,
+      id: randomUUID(),
       name,
       description,
       price,
